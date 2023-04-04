@@ -16,7 +16,10 @@
 #include <nav_msgs/Odometry.h>
 #include <tf2_ros/transform_broadcaster.h>
 
+#include <ros/console.h>
+
 #include <string>
+
 
 namespace wescore {
 class LimoSkidSteer {
@@ -25,6 +28,7 @@ class LimoSkidSteer {
 
   void SetupSubscription();
   void PublishOdometryToROS();
+  double getyaw();
 
  private:
   std::string robot_name_;
@@ -34,8 +38,11 @@ class LimoSkidSteer {
   std::string motor_rr_topic_;
   std::string cmd_topic_;
 
-  const double LIMO_WHEELBASE = 0.2;
-  const double LIMO_WHEEL_RADIUS = 0.045;
+  const double LIMO_WHEELBASE = 0.27;
+  const double LIMO_WHEEL_RADIUS = 0.04512;
+
+  // const double LIMO_WHEELBASE = 0.172;
+  // const double LIMO_WHEEL_RADIUS = 0.09;
 
   ros::NodeHandle *nh_;
 

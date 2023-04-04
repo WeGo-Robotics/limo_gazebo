@@ -86,13 +86,18 @@ void LimoSkidSteer::PublishOdometryToROS()
   linear_speed_ = driving_vel;
   angular_speed_ = steering_vel;
 
+
+  double d_theta = angular_speed_ * dt;
+  theta_ += d_theta;
+
+  ROS_DEBUG("yaw: %lf", theta_);
   double d_x = linear_speed_ * std::cos(theta_) * dt;
   double d_y = linear_speed_ * std::sin(theta_) * dt;
-  double d_theta = angular_speed_ * dt;
+  
 
   position_x_ += d_x;
   position_y_ += d_y;
-  theta_ += d_theta;
+  
 
   geometry_msgs::Quaternion odom_quat = tf::createQuaternionMsgFromYaw(theta_);
 
@@ -128,4 +133,8 @@ void LimoSkidSteer::PublishOdometryToROS()
     last_time_ = current_time_;
 }
 
+double LimoSkidSteer::getyaw()
+{
+  return theta_;  
+}
 }  // namespace wescore

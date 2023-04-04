@@ -9,6 +9,9 @@
 
 using namespace wescore;
 
+
+
+
 int main(int argc, char **argv) {
   // setup ROS node
   ros::init(argc, argv, "limo_odom");
@@ -29,6 +32,7 @@ int main(int argc, char **argv) {
   while(ros::ok())
   {
     skid_steer_controller.PublishOdometryToROS();
+    // ROS_WARN("Namespace: %lf", skid_steer_controller.getyaw());
     ros::spinOnce();
     rate.sleep();
   }
