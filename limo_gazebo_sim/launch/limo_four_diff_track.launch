@@ -2,7 +2,7 @@
 <launch>
     <arg name="robot_namespace" default="/"/>
     <arg name="world_name" default="$(find limo_gazebo_sim)/worlds/track.world"/>
-    <arg name="pub_tf" default="true" />
+    <arg name="pub_tf" default="false" />
 
     <include file="$(find gazebo_ros)/launch/empty_world.launch">
         <arg name="world_name" value="$(arg world_name)"/>
